@@ -2,7 +2,7 @@ provider "aws" {
   region = "eu-north-1"  
 }
 
-resource "aws_instance" "web_server" {
+resource "aws_instance" "monitoring_server" {
   ami           = "ami-0989fb15ce71ba39e"
   instance_type = "t3.medium"
   key_name      = "Teraform-key"
@@ -47,14 +47,14 @@ resource "aws_security_group" "monitoring_server" {
 
    ingress {
     from_port   = 9300
-    to_port     = 80
+    to_port     = 9300
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
    ingress {
     from_port   = 5601
-    to_port     = 80
+    to_port     = 5601
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
